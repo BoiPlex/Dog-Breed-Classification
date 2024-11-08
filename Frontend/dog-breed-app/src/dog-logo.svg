@@ -1,0 +1,24 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dog's ears -->
+  <path d="M20 30 Q10 15 25 10 Q30 20 20 30" fill="#A0522D"/>
+  <path d="M80 30 Q90 15 75 10 Q70 20 80 30" fill="#A0522D"/>
+
+  <!-- Dog's face -->
+  <circle cx="50" cy="50" r="30" fill="#F4A460" stroke="#A0522D" stroke-width="2"/>
+
+  <!-- Dog's eyes -->
+  <circle cx="40" cy="45" r="4" fill="black"/>
+  <circle cx="60" cy="45" r="4" fill="black"/>
+  <!-- Adding eye highlights for a friendly expression -->
+  <circle cx="39" cy="44" r="1" fill="white"/>
+  <circle cx="59" cy="44" r="1" fill="white"/>
+
+  <!-- Dog's nose -->
+  <ellipse cx="50" cy="60" rx="6" ry="4" fill="#4B3D3D"/>
+
+  <!-- Dog's mouth -->
+  <path d="M45 65 Q50 72 55 65" stroke="#4B3D3D" stroke-width="2" fill="none"/>
+
+  <!-- Tongue for added detail -->
+  <path d="M47 67 Q50 74 53 67" fill="#FF6347"/>
+</svg>
