@@ -18,7 +18,7 @@ print("y_train shape:", y_train.shape)
 print("y_test shape:", y_test.shape)
 print("Number of classes:", num_classes)
 
-# 2. creat model
+# 2. create model
 model = create_model(num_classes)
 
 # 3. train model for three optimizer
