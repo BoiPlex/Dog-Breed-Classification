@@ -23,7 +23,7 @@ def main():
     print(f"\nOutput directory created at: {output_dir}")
 
     # 3. Train and evaluate models with multiple optimizers
-    optimizers = ['adam', 'adamw', 'sgd']  # 定義優化器名稱
+    optimizers = ['adam', 'adamw', 'sgd']  
 
     for optimizer_name in optimizers:
         print(f"\nTraining model with {optimizer_name.upper()} optimizer...")
