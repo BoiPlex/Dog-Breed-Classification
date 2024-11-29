@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report
 
 def evaluate_model(model, X_test, y_test, encoder):
     loss, acc = model.evaluate(X_test, y_test, verbose=0)
@@ -8,14 +8,16 @@ def evaluate_model(model, X_test, y_test, encoder):
     print(f"Accuracy on the test set: {acc:.3f}")
 
     predictions = model.predict(X_test)
-    label_predictions = encoder.inverse_transform(predictions)
+    y_pred = np.argmax(predictions, axis=1)
+    y_true = np.argmax(y_test, axis=1)
 
-    rows, cols = 5, 3
-    fig, ax = plt.subplots(rows, cols, figsize=(25, 25))
-    for i in range(rows):
-        for j in range(cols):
-            index = np.random.randint(0, len(X_test))
-            ax[i, j].imshow(X_test[index])
-            ax[i, j].set_title(f'Predicted: {label_predictions[index]}\nActually: {encoder.inverse_transform(y_test)[index]}')
-    plt.tight_layout()
+    # Generate classification report
+    class_names = encoder.classes_
+    print("\nClassification Report:")
+    print(classification_report(y_true, y_pred, target_names=class_names))
+
+    # Plot confusion matrix
+    cm = confusion_matrix(y_true, y_pred)
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=class_names)
+    disp.plot(cmap="viridis", xticks_rotation="vertical")
     plt.show()
