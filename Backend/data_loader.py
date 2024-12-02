@@ -11,7 +11,6 @@ def load_data_from_mat(mat_file_path):
     
     mat_data = scipy.io.loadmat(mat_file_path)
 
-    
     if "file_list" not in mat_data or "labels" not in mat_data:
         raise ValueError("The .mat file must contain 'file_list' and 'labels'.")
 
