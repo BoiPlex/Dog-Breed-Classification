@@ -3,8 +3,8 @@ from tensorflow.keras.optimizers import Adam, SGD
 from tensorflow.keras.optimizers.experimental import AdamW
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
-def train_model(model, X_train, y_train, X_test, y_test, optimizer_name, batch_size=32, epochs=150):
-   
+def train_model(model, X_train, y_train, X_test, y_test, optimizer_name, batch_size=64, epochs=200):
+    
     datagen = ImageDataGenerator(
         rotation_range=20,
         width_shift_range=0.2,
@@ -17,12 +17,12 @@ def train_model(model, X_train, y_train, X_test, y_test, optimizer_name, batch_s
     datagen.fit(X_train)
 
     early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
-    reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=5, verbose=1)
+    reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=5, min_lr=1e-6, verbose=1)
 
     optimizers = {
-        'adam': Adam(learning_rate=0.001),
-        'adamw': AdamW(learning_rate=0.001),
-        'sgd': SGD(learning_rate=0.001, momentum=0.9)
+        'adam': Adam(learning_rate=0.002),
+        'adamw': AdamW(learning_rate=0.002),
+        'sgd': SGD(learning_rate=0.02, momentum=0.9)
     }
 
     if optimizer_name not in optimizers:
