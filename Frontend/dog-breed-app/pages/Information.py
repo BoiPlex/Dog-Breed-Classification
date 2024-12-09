@@ -14,7 +14,8 @@ Additionally, we compared the performance of three optimizers: **Adam**, **AdamW
 """)
 
 st.markdown("""
-### Model:
+## AI methodologies and techniques
+#### Model:
 
   
 
@@ -26,7 +27,7 @@ Layer 15 after unfreezing: allows deep weight updates to improve the model's ada
 
   
 
-### Train strategy:
+#### Train strategy:
 
   
 
@@ -80,7 +81,7 @@ Record and print the learning rate changes for each epoch.
 
   
 
-Early Stopping:
+#### Early Stopping:
 
   
 
@@ -90,7 +91,7 @@ If the validation loss does not improve after 30 epochs, terminate training and 
 
   
 
-Training model:
+#### Training model:
 
   
 
