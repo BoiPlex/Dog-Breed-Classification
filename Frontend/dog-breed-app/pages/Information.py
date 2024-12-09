@@ -103,6 +103,35 @@ We use more than expected Epochs as set up because we purchased colab pro+ and t
 """)
 
 st.markdown("""
+## Challenges faced and their resolutions.
+
+Challenge: Limited dataset size
+
+Problem: The data set used to train the dog breed classifier was relatively small, increasing the risk of overfitting and reducing the model's ability to generalize.
+
+Solution: Apply data augmentation to expand the data set. Use techniques such as rotation, flipping, scaling, and moving to create a diverse set of training images to improve model robustness.
+
+---
+
+Challenge: Overfitting
+
+Problem: Due to the complexity of the VGG16 architecture and the small dataset, the model tends to overfit the training data.
+
+Solution: Implement early stopping to monitor validation loss and stop training when improvements stop. Additionally, a Dropout layer is included in the model to introduce regularization.
+
+---
+
+Challenge: Computational Constraints
+
+Problem: Training a large model like VGG16 using augmentation and multiple experiments is computationally intensive.
+
+Solution: We purchased colab pro+ for the A100 GPU. The model is trained on an A100 GPU to accelerate operations. Additionally, a number of sizes and learning rates are optimized to ensure efficient use of available resources.
+
+---
+
+""")
+
+st.markdown("""
 ## Result Figures
 """)
 st.image("Frontend/dog-breed-app/src/adamw_metrics.png", use_column_width=True)
