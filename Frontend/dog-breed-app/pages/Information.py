@@ -7,3 +7,4 @@ st.subheader("Overview")
 st.header("Contribution")
 
 st.write("")
+st.image("Temp_Contribution.png", caption="Contribution Diagram", use_column_width=True)
