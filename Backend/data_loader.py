@@ -5,10 +5,10 @@ from sklearn.preprocessing import LabelBinarizer
 from sklearn.model_selection import train_test_split
 import scipy.io
 
-BASEPATH = "/Users/chinghaochang/project-170/data/Images/"
+BASEPATH = "/content/drive/MyDrive/data/Images"
 
 def load_data_from_mat(mat_file_path):
-    
+
     mat_data = scipy.io.loadmat(mat_file_path)
 
     if "file_list" not in mat_data or "labels" not in mat_data:
@@ -16,6 +16,8 @@ def load_data_from_mat(mat_file_path):
 
     file_list = [item[0] for item in mat_data['file_list'].flatten()]
     labels = mat_data['labels'].flatten()
+
+    class_names = sorted(set(os.path.split(file_path)[0].split('-')[1] for file_path in file_list))
 
     X = []
     for file_path in file_list:
@@ -29,4 +31,4 @@ def load_data_from_mat(mat_file_path):
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)
 
-    return X_train, X_test, y_train, y_test, encoder, len(encoder.classes_)
+    return X_train, X_test, y_train, y_test, encoder, len(encoder.classes_), class_names
