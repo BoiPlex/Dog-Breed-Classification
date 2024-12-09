@@ -37,7 +37,7 @@ CLASS_NAMES = {
     115: 'Standard Poodle', 116: 'Mexican Hairless', 117: 'Dingo', 118: 'Dhole', 119: 'African Hunting Dog'
 }
 
-MODEL_PATH = "./model/model_adamw.keras"
+MODEL_PATH = "Frontend/dog-breed-app/model/model_adamw.keras"
 
 try:
     model = load_model(MODEL_PATH)
