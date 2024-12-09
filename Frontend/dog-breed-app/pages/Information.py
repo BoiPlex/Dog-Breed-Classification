@@ -136,5 +136,26 @@ st.image("Frontend/dog-breed-app/src/adamw_metrics.png", use_column_width=True)
 st.image("Frontend/dog-breed-app/src/adam_metrics.png", use_column_width=True)
 st.image("Frontend/dog-breed-app/src/sgd_metrics.png", use_column_width=True)
 st.image("Frontend/dog-breed-app/src/convergence_comparison.png", use_column_width=True)
-st.header("Contribution")
-st.image("Frontend/dog-breed-app/src/Temp_Contribution.png", use_column_width=True)
+
+
+st.markdown("""
+## Contribution
+
+Ching Hao Chang- Backend Code writing, training, debugging. front-end code writing, presentation slides
+
+Qiyu Lu - Model tuning, training, front-end writing, slides, and presentation preparation.
+
+Justin Cho - Implemented front-end application for the model, front-end website information content, and helped to write the project documents (check-in, proposal, presentation).
+
+Rachel Lin - Implemented front-end application for the model, helped to write the project documents (check-in, proposal, presentation, abstract for sign-up sheet).
+
+Ian McLaughlin - Co-wrote project website, writing project slide
+
+Amritpal Zenda - Backend code testing and implementation debugging, website testing, dataset research
+
+Karim Shami - Backend code testing, front-end site content, and front-end design
+
+Frank Wem Guang Zhu - Model training and presentation preparation
+
+
+""")
