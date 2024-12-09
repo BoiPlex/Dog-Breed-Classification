@@ -37,25 +37,19 @@ CLASS_NAMES = {
     115: 'Standard Poodle', 116: 'Mexican Hairless', 117: 'Dingo', 118: 'Dhole', 119: 'African Hunting Dog'
 }
 
-MODEL_PATHS = {
-    "Adam": "Frontend/dog-breed-app/model/model_adam.keras",
-    "AdamW": "Frontend/dog-breed-app/model/model_adamw.keras",
-    "SGD": "Frontend/dog-breed-app/model/model_sgd.keras"
-}
-
-st.sidebar.title("Select Optimizer")
-selected_optimizer = st.sidebar.radio("Choose an optimizer:", ["Adam", "AdamW", "SGD"])
+MODEL_PATH = "Frontend/dog-breed-app/model/model_adamw.keras"
 
 try:
-    model = load_model(MODEL_PATHS[selected_optimizer])
-    st.success(f"Model using {selected_optimizer} optimizer successfully loaded.")
+    model = load_model(MODEL_PATH)
+    st.success("Model successfully loaded")
 except Exception as e:
-    st.error(f"Error loading {selected_optimizer} model: {e}")
+    st.error(f"Error loading model: {e}")
     st.stop()
+
 
 st.title("Dog Breed Classification")
 
-uploaded_file = st.file_uploader("Please upload an image of a dog", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader("Upload an image of a dog", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
@@ -71,7 +65,6 @@ if uploaded_file is not None:
 
     if CLASS_NAMES:
         predicted_class = CLASS_NAMES[predicted_index]
-        st.write(f"Optimizer: **{selected_optimizer}**")
         st.write(f"Prediction: **{predicted_class}**")
         st.write(f"Confidence: **{confidence:.2f}**")
     else:
