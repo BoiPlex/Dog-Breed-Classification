@@ -14,7 +14,7 @@ Additionally, we compared the performance of three optimizers: **Adam**, **AdamW
 """)
 
 st.markdown("""
-## Model:
+### Model:
 
   
 
@@ -26,7 +26,7 @@ Layer 15 after unfreezing: allows deep weight updates to improve the model's ada
 
   
 
-## Train strategy:
+### Train strategy:
 
   
 
@@ -62,7 +62,7 @@ fill_mode='nearest'
   
   
 
-## Learning Rate Scheduler:
+### Learning Rate Scheduler:
 
   
 
