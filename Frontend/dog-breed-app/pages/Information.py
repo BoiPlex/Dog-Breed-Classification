@@ -102,7 +102,9 @@ Maximum number of Epochs: 500
 We use more than expected Epochs as set up because we purchased colab pro+ and there still is a limit for compute usage.
 """)
 
-
+st.markdown("""
+## Result Figures
+""")
 st.image("Frontend/dog-breed-app/src/adamw_metrics.png", use_column_width=True)
 st.image("Frontend/dog-breed-app/src/adam_metrics.png", use_column_width=True)
 st.image("Frontend/dog-breed-app/src/sgd_metrics.png", use_column_width=True)
