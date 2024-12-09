@@ -49,7 +49,7 @@ except Exception as e:
 
 st.title("Dog Breed Classification")
 
-uploaded_file = st.file_uploader("Upload an image of a dog", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader("Please upload an image of a dog", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
