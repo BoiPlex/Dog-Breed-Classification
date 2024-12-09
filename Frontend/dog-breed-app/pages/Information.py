@@ -7,4 +7,4 @@ st.subheader("Overview")
 st.header("Contribution")
 
 st.write("")
-st.image("Frontend/dog-breed-app/src/Temp_Contribution.png", caption="Contribution Diagram", use_column_width=True)
+st.image("Frontend/dog-breed-app/src/Temp_Contribution.png", caption="Contribution", use_column_width=True)
