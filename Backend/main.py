@@ -1,41 +1,44 @@
-from data_loader import load_data_from_mat
-from model import create_model
-from train import train_model
-from evaluate import evaluate_model, plot_learning_rate
-import matplotlib.pyplot as plt
 import os
+import matplotlib.pyplot as plt
 
 
-def train_and_evaluate(optimizer_name, X_train, y_train, X_test, y_test, encoder, num_classes, output_dir):
+
+def train_and_evaluate(optimizer_name, X_train, y_train, X_test, y_test, encoder, num_classes, output_dir, class_names):
+    """Train and evaluate a model with a specific optimizer."""
     print(f"\nTraining model with {optimizer_name.upper()} optimizer...")
 
+    # Recreate the model
     model = create_model(num_classes)
 
+    # Train the model
     try:
         history = train_model(model, X_train, y_train, X_test, y_test, optimizer_name)
     except Exception as e:
         print(f"Error during training with {optimizer_name.upper()} optimizer: {e}")
-        return history  # Return history even on error for comparison
+        return
 
+    # Evaluate the model
     print(f"\nEvaluating model trained with {optimizer_name.upper()} optimizer")
     try:
-        evaluate_model(model, X_test, y_test, encoder, output_dir, optimizer_name)
+        evaluate_model(model, X_test, y_test, encoder, output_dir, optimizer_name, class_names)
     except Exception as e:
         print(f"Error during evaluation with {optimizer_name.upper()} optimizer: {e}")
 
-    model_path = os.path.join(output_dir, f"model_{optimizer_name}.h5")
+    # Save the trained model
+    model_path = os.path.join(output_dir, f"model_{optimizer_name}.keras")
     try:
         model.save(model_path)
         print(f"Model saved to {model_path}")
     except Exception as e:
         print(f"Error saving model for {optimizer_name.upper()} optimizer: {e}")
 
+    # Plot training metrics and learning rate curve
     plot_training_metrics(history, optimizer_name, output_dir)
     plot_learning_rate(history, optimizer_name, output_dir)
 
     return history
-
 def plot_training_metrics(history, optimizer_name, output_dir):
+    """Plot and save training metrics."""
     try:
         plt.figure(figsize=(12, 5))
         plt.subplot(1, 2, 1)
@@ -65,33 +68,31 @@ def plot_training_metrics(history, optimizer_name, output_dir):
 
 
 
+
 def main():
-    # 1. Load data
-    mat_file_path = "/Users/chinghaochang/project-170/data/lists/train_list.mat"
+    mat_file_path = "/content/drive/MyDrive/data/lists/train_list.mat"
     print(f"Loading data from {mat_file_path}...")
-    X_train, X_test, y_train, y_test, encoder, num_classes = load_data_from_mat(mat_file_path)
+    X_train, X_test, y_train, y_test, encoder, num_classes, class_names = load_data_from_mat(mat_file_path)
 
     print(f"X_train shape: {X_train.shape}")
     print(f"X_test shape: {X_test.shape}")
     print(f"y_train shape: {y_train.shape}")
     print(f"y_test shape: {y_test.shape}")
     print(f"Number of classes: {num_classes}")
+    print(f"Processed class names: {class_names}")
 
-    # 2. Create output directory
-    output_dir = "output"
+    output_dir = "/content/drive/MyDrive/output"
     os.makedirs(output_dir, exist_ok=True)
     print(f"\nOutput directory created at: {output_dir}")
 
-    # 3. Train and evaluate models with multiple optimizers
-    optimizers = ['adam', 'adamw', 'sgd']  # Define optimizer names
-    histories = []  # Store histories for convergence comparison
+    optimizers = ['adam', 'adamw', 'sgd']
+    histories = []
 
     for optimizer_name in optimizers:
-        history = train_and_evaluate(optimizer_name, X_train, y_train, X_test, y_test, encoder, num_classes, output_dir)
+        history =  train_and_evaluate(optimizer_name, X_train, y_train, X_test, y_test, encoder, num_classes, output_dir, class_names)
         if history:
             histories.append((history, optimizer_name))
 
-    # Compare convergence speed
     compare_convergence(histories, output_dir)
 
     print("\nTraining and evaluation completed.")
@@ -99,3 +100,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
