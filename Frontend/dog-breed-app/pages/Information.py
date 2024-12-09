@@ -125,9 +125,7 @@ Challenge: Computational Constraints
 
 Problem: Training a large model like VGG16 using augmentation and multiple experiments is computationally intensive.
 
-Solution: We purchased colab pro+ for the A100 GPU. The model is trained on an A100 GPU to accelerate operations. Additionally, a number of sizes and learning rates are optimized to ensure efficient use of available resources.
-
----
+Solution: We purchased Colab Pro+ for the A100 GPU. The model is trained on an A100 GPU to accelerate operations. Additionally, a number of sizes and learning rates are optimized to ensure efficient use of available resources.
 
 """)
 
