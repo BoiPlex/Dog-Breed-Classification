@@ -1,8 +1,9 @@
 tensorflow                 
-numpy==1.23.0                      
+numpy                      
 matplotlib                
 seaborn                    
 scikit-learn              
 jupyter                   
 pillow
 opencv-python
+streamlit
