@@ -132,10 +132,10 @@ Solution: We purchased Colab Pro+ for the A100 GPU. The model is trained on an A
 st.markdown("""
 ## Result Figures
 """)
-st.image("src/adamw_metrics.png", use_container_width=True)
-st.image("src/adam_metrics.png", use_container_width=True)
-st.image("src/sgd_metrics.png", use_container_width=True)
-st.image("src/convergence_comparison.png", use_container_width=True)
+st.image("Frontend/dog-breed-app/src/adamw_metrics.png", use_container_width=True)
+st.image("Frontend/dog-breed-app/src/adam_metrics.png", use_container_width=True)
+st.image("Frontend/dog-breed-app/src/sgd_metrics.png", use_container_width=True)
+st.image("Frontend/dog-breed-app/src/convergence_comparison.png", use_container_width=True)
 
 
 st.markdown("""
