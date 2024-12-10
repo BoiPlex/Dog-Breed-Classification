@@ -75,7 +75,8 @@ if uploaded_file is not None:
     # Get example image of predicted dog breed
     
     with st.spinner(f"Getting example of {predicted_class}..."):
+        st.write(f"example image of predicted dog breed")
         downloader.download(predicted_class, limit=1, output_dir="predicted_image_downloads")
         image_path = f"predicted_image_downloads/{predicted_class}/Image_1.jpg"
     st.image(image_path, caption=f"{predicted_class}", use_container_width=True)
-    st.write(f"example image of predicted dog breed")
+    
