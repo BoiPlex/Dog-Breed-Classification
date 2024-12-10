@@ -7,3 +7,4 @@ jupyter
 pillow
 opencv-python
 streamlit
+bing_image_downloader
