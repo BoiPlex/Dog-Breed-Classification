@@ -153,7 +153,7 @@ Ian McLaughlin - Co-wrote project website, writing project slide
 
 Amritpal Zenda - Backend code testing and implementation debugging, website testing, dataset research
 
-Karim Shami - Backend code testing, front-end site content, and front-end design
+Karim Shami - Backend code testing, front-end site content, front-end code, and project documents
 
 Frank Wem Guang Zhu - Model training and presentation preparation
 
