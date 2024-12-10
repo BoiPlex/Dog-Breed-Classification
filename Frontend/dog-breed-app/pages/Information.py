@@ -141,7 +141,7 @@ st.image("Frontend/dog-breed-app/src/convergence_comparison.png", use_container_
 st.markdown("""
 ## Contribution
 
-Ching Hao Chang- Backend Code writing, training, debugging. front-end code writing, presentation slides
+Ching Hao Chang - Backend Code writing, training, debugging. front-end code writing, presentation slides
 
 Qiyu Lu - Model tuning, training, front-end writing, slides, and presentation preparation.
 
