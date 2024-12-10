@@ -4,6 +4,7 @@ from tensorflow.keras.models import load_model
 from PIL import Image
 import scipy.io
 import os
+from bing_image_downloader import downloader
 
 st.set_page_config(
     page_title="Home"
@@ -59,9 +60,10 @@ if uploaded_file is not None:
     image_array = np.array(image) / 255.0
     image_array = np.expand_dims(image_array, axis=0)
 
-    predictions = model.predict(image_array)
-    predicted_index = np.argmax(predictions)
-    confidence = predictions[0][predicted_index]
+    with st.spinner(f"Predicting dog breed..."):
+        predictions = model.predict(image_array)
+        predicted_index = np.argmax(predictions)
+        confidence = predictions[0][predicted_index]
 
     if CLASS_NAMES:
         predicted_class = CLASS_NAMES[predicted_index]
@@ -69,3 +71,9 @@ if uploaded_file is not None:
         st.write(f"Confidence: **{confidence:.2f}**")
     else:
         st.error("Class names not available. Unable to display prediction.")
+
+    # Get example image of predicted dog breed
+    with st.spinner(f"Getting example of {predicted_class}..."):
+        downloader.download(predicted_class, limit=1, output_dir="predicted_image_downloads")
+        image_path = f"predicted_image_downloads/{predicted_class}/Image_1.jpg"
+    st.image(image_path, caption=f"{predicted_class}", use_container_width=True)
