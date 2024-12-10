@@ -4,11 +4,11 @@ from tensorflow.keras.models import load_model
 from PIL import Image
 import scipy.io
 import os
-from bing_image_downloader import downloader
 
 st.set_page_config(
     page_title="Home"
 )
+
 
 CLASS_NAMES = {
     0: 'Chihuahua', 1: 'Japanese Spaniel', 2: 'Maltese Dog', 3: 'Pekinese', 4: 'Shih-Tzu',
@@ -37,22 +37,11 @@ CLASS_NAMES = {
     115: 'Standard Poodle', 116: 'Mexican Hairless', 117: 'Dingo', 118: 'Dhole', 119: 'African Hunting Dog'
 }
 
-# ADAM_PATH = "model/model_adam.keras"
-ADAMW_PATH = "model/model_adamw.keras"
-# SGD_PATH = "model/model_adamw.keras"
+MODEL_PATH = "Frontend/dog-breed-app/model/model_adamw.keras"
 
-@st.cache_resource
-def load_mat_file():
-    try:
-        return scipy.io.loadmat(MAT_FILE_PATH)
-    except Exception as e:
-        st.error(f"Error loading .mat file: {e}")
-        return None
-
-# App
 try:
-    model = load_model(ADAMW_PATH)
-    st.success("Model successfully loaded!")
+    model = load_model(MODEL_PATH)
+    st.success("Model successfully loaded")
 except Exception as e:
     st.error(f"Error loading model: {e}")
     st.stop()
@@ -70,20 +59,13 @@ if uploaded_file is not None:
     image_array = np.array(image) / 255.0
     image_array = np.expand_dims(image_array, axis=0)
 
-    with st.spinner(f"Predicting dog breed..."):
-        predictions = model.predict(image_array)
-        predicted_index = np.argmax(predictions)
-        confidence = predictions[0][predicted_index]
+    predictions = model.predict(image_array)
+    predicted_index = np.argmax(predictions)
+    confidence = predictions[0][predicted_index]
 
-        if CLASS_NAMES:
-            predicted_class = CLASS_NAMES[predicted_index]
-            st.write(f"- Prediction: **{predicted_class}**")
-            st.write(f"- Confidence: **{confidence:.2f}**")
-        else:
-            st.error("Class names not available. Unable to display prediction.")
-        
-    # Get example image of predicted dog breed
-    with st.spinner(f"Getting example of {predicted_class}..."):
-        downloader.download(predicted_class, limit=1, output_dir="predicted_image_downloads")
-        image_path = f"predicted_image_downloads/{predicted_class}/Image_1.jpg"
-    st.image(image_path, caption=f"{predicted_class}", use_container_width=True)
+    if CLASS_NAMES:
+        predicted_class = CLASS_NAMES[predicted_index]
+        st.write(f"Prediction: **{predicted_class}**")
+        st.write(f"Confidence: **{confidence:.2f}**")
+    else:
+        st.error("Class names not available. Unable to display prediction.")
